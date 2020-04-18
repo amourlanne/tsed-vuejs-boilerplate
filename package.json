@@ -1,0 +1,38 @@
+{
+    "name": "tsed-vuejs-boilerplate",
+    "author": "Alexis Mourlanne",
+    "private": true,
+    "dependencies": {
+        "lerna": "^3.20.2",
+        "pm2": "^4.3.0"
+    },
+    "scripts": {
+        "start": "lerna run start --stream --parallel",
+        "start:client": "lerna run start --scope=client --stream",
+        "start:server": "lerna run start --scope=server --stream"
+    },
+    "workspaces": {
+        "packages": [
+            "packages/*"
+        ],
+        "nohoist": [
+            "**/@types",
+            "**/@types/**",
+            "**/@tsed",
+            "**/@tsed/**"
+        ]
+    },
+    "version": "1.0.0",
+    "main": "processes.config.js",
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/amourlanne/projet-dotsafe.git"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/amourlanne/projet-dotsafe/issues"
+    },
+    "homepage": "https://github.com/amourlanne/projet-dotsafe#readme",
+    "description": ""
+}
