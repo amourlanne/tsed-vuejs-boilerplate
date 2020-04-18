@@ -1,0 +1,11 @@
+entity: User
+parameters: {}
+items:
+  user{1..10}:
+    username: '{{internet.userName}}'
+    firstName: '{{name.firstName}}'
+    lastName: '{{name.lastName}}'
+    email: '{{internet.email}}'
+    password: 'password'
+    role: '{{helpers.randomize(["admin","user"])}}'
+    gender: '{{helpers.randomize(["male","female","other"])}}'
