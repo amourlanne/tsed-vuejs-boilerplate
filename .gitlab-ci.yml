@@ -11,3 +11,12 @@ build-docker:
     - docker
   script:
     - docker login --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - >-
+      docker build
+      --rm=false
+      -t $CI_REGISTRY_IMAGE/node:${CI_COMMIT_REF_NAME}
+      --file docker/node/Dockerfile
+      .
+    - docker login --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE/node:${CI_COMMIT_REF_NAME}
+
