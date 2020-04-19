@@ -1,7 +1,7 @@
 import AbstractAPIService from '@/services/api/AbstractAPIService';
 
 class UserService extends AbstractAPIService {
-    public async usernameAvailable(username): Promise<{ available: boolean}> {
+    public async usernameAvailable(username): Promise<{ available: boolean }> {
         return new Promise((resolve, reject) => {
             this.axios
                 .post('/users/username/available', { username })

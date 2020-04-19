@@ -48,7 +48,7 @@
                                 </div>
                                 <div>The maximum file size allowed is 200KB.</div>
                                 <hr />
-                                <button type="button" class="btn btn-outline-danger" v-on:click="onClickRemoveAvatar">
+                                <button type="button" class="btn btn-outline-danger" :disabled="avatarUrl === null" v-on:click="onClickRemoveAvatar">
                                     Remove avatar
                                 </button>
                             </div>

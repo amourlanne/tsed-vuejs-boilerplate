@@ -9,7 +9,16 @@
     "scripts": {
         "start": "lerna run start --stream --parallel",
         "start:client": "lerna run start --scope=client --stream",
-        "start:server": "lerna run start --scope=server --stream"
+        "start:server": "lerna run start --scope=server --stream",
+        "test": "lerna run test --stream",
+        "test:client": "lerna run test --scope=client",
+        "test:server": "lerna run test --scope=server",
+        "lint": "lerna run lint",
+        "lint:fix": "lerna run lint:fix",
+        "build": "lerna run build --stream",
+        "build:client": "lerna run build --scope=client --stream",
+        "build:server": "lerna run build --scope=server --stream",
+        "start:prod": "cross-env NODE_ENV=production pm2-docker --raw processes.config.js --no-deamon",
     },
     "workspaces": {
         "packages": [

@@ -13,5 +13,4 @@ const uniqueUsername = async username => {
     return !helpers.req(username) || available;
 };
 
-
 export default uniqueUsername;
