@@ -4,6 +4,6 @@ stages:
 build-docker:
   stage: build
   tags:
-    - docker-build
+    - docker
   script:
     - docker login --password $CI_JOB_TOKEN registry.gitlab.com
