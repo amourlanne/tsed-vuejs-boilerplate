@@ -2,12 +2,17 @@ stages:
   - build
   - quality
 
+variables:
+  GIT_STRATEGY: none
+
 services:
   - docker:dind
 
 build-container:
   stage: build
   image: docker
+  variables:
+    GIT_STRATEGY: fetch
   tags:
     - docker
   script:
