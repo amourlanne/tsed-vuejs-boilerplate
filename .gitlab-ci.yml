@@ -2,11 +2,11 @@ stages:
   - build
 
 services:
-  - docker:19.03.8-dind
+  - docker:dind
 
 build-docker:
   stage: build
-  image: docker:19.03.8
+  image: docker
   tags:
     - docker
   script:
