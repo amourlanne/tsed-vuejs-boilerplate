@@ -1,10 +1,11 @@
 stages:
   - build
+  - quality
 
 services:
   - docker:dind
 
-build-docker:
+build-container:
   stage: build
   image: docker
   tags:
@@ -19,4 +20,24 @@ build-docker:
       .
     - docker login --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker push $CI_REGISTRY_IMAGE/node:${CI_COMMIT_REF_NAME}
+
+lint-server:
+  stage: quality
+  image:
+    name: $CI_REGISTRY_IMAGE/node:${CI_COMMIT_REF_NAME}
+    entrypoint: [""]
+  tags:
+    - docker
+  script:
+    - yarn lint:server
+
+lint-client:
+  stage: quality
+  image:
+    name: $CI_REGISTRY_IMAGE/node:${CI_COMMIT_REF_NAME}
+    entrypoint: [""]
+  tags:
+    - docker
+  script:
+    - yarn lint:client
 

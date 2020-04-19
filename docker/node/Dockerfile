@@ -1,6 +1,8 @@
 FROM node
 
-RUN npm install -g pm2
-
 WORKDIR /var/www
 
+COPY ../../packages /var/www/packages
+COPY ../../package.json /var/www/package.json
+
+RUN yarn install
