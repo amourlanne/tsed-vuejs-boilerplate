@@ -2,10 +2,6 @@
     "name": "tsed-vuejs-boilerplate",
     "author": "Alexis Mourlanne",
     "private": true,
-    "dependencies": {
-        "lerna": "^3.20.2",
-        "pm2": "^4.3.0"
-    },
     "scripts": {
         "start": "lerna run start --stream --parallel",
         "start:client": "lerna run start --scope=client --stream",

@@ -1,3 +1,4 @@
-FROM nginx
+FROM nginx:1.17.10-alpine
 
-COPY api.conf /etc/nginx/conf.d/api.conf
+COPY conf/client.conf /etc/nginx/conf.d/client.conf
+COPY conf/server.conf /etc/nginx/conf.d/server.conf

@@ -1,8 +1,6 @@
-FROM node
+FROM node:14.0.0-slim
+
+RUN yarn global add pm2
+RUN yarn global add lerna
 
 WORKDIR /var/www
-
-COPY packages /var/www/packages
-COPY package.json /var/www/package.json
-
-RUN yarn install

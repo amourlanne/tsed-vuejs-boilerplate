@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   mariadb:
-    image: mariadb
+    image: mariadb:10.5.2
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
@@ -14,7 +14,7 @@ services:
       - 3306:3306
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:5.0.2
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST
@@ -27,33 +27,34 @@ services:
       - /sessions
 
   maildev:
-    image: djfarrelly/maildev
+    image: maildev/maildev:1.1.0
     ports:
-      - '1080:80'
-      - '1025:25'
+      - '1080:1080'
+      - '1025:1025'
 
-#  node:
-#    build: ./docker/node
-#    tty: true
-#    ports:
-#      - "3000:3000" # <host-port>:<container-port> to listen to, so anything running on port 3000 of the container will map to port 3000 on our localhost
-#      - "8080:8080"
-#    environment:
-#      - MYSQL_HOST
-#      - MYSQL_PORT
-#      - MYSQL_DATABASE
-#      - MYSQL_USER
-#      - MYSQL_PASSWORD
-#    volumes:
-#      - ./www:/var/www
-#
-#  nginx:
-#    build: ./docker/nginx
-#    ports:
-#      - "80:80"
-#      - "443:443"
-#    volumes:
-#      - ./www:/var/www
+  node:
+    build: ./docker/node
+    tty: true
+    ports:
+      - "3000:3000" # <host-port>:<container-port> to listen to, so anything running on port 3000 of the container will map to port 3000 on our localhost
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST
+      - MYSQL_PORT
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    volumes:
+      - ./packages:/var/www/packages
+      - ./lerna.json:/var/www/lerna.json
+      - ./package.json:/var/www/package.json
+      - ./processes.config.js:/var/www/processes.config.js
+
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "80:80"
+      - "443:443"
 
 volumes:
   mysql_data:
