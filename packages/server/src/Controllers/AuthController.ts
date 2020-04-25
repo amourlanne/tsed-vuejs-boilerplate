@@ -3,6 +3,7 @@ import {UserService} from "../Services/UserService";
 import {User} from "../Entities/User";
 import {UpdateUserModel} from "../Models/UpdateUserModel";
 import {Authenticate} from "@tsed/passport";
+import {CookieOptions} from "express";
 
 @Controller("/")
 export class AuthController {
@@ -16,9 +17,16 @@ export class AuthController {
 
         const jwt = await this.userService.getBearerToken(user);
 
-        response.cookie('bearer_jwt', jwt, rememberMe ? {
-            maxAge: 60 * 60 * 1000
-        } : {});
+        const cookieOptions: CookieOptions = {
+          domain: '.boilerplate.local',
+          sameSite: 'none'
+        };
+
+        if(rememberMe) {
+          cookieOptions.maxAge = 60 * 60 * 1000
+        }
+
+        response.cookie('bearer_jwt', jwt, cookieOptions);
 
         return user;
     }

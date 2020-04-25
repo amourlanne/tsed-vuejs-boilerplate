@@ -45,10 +45,7 @@ services:
       - MYSQL_USER
       - MYSQL_PASSWORD
     volumes:
-      - ./packages:/var/www/packages
-      - ./lerna.json:/var/www/lerna.json
-      - ./package.json:/var/www/package.json
-      - ./processes.config.js:/var/www/processes.config.js
+      - ./:/var/www/
 
   nginx:
     build: ./docker/nginx

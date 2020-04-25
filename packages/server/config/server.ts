@@ -27,7 +27,7 @@ export default {
         "src/Protocols/**/*Protocol.ts"
     ],
     cors: {
-        origin: /localhost/,
+        origin: 'http://boilerplate.local',
         credentials: true
     },
     viewsDir: "templates/Views",
