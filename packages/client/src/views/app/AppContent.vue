@@ -1,20 +1,20 @@
 <template>
     <div class="home">
         <helmet defaultTitle="Home" titleTemplate="Home | %s"> </helmet>
-        <home-header></home-header>
+        <app-header></app-header>
         <router-view />
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import HomeHeader from '../components/HomeHeader';
+import AppHeader from '../../components/AppHeader';
 import { Helmet } from '@jnields/vue-helmet';
 
 export default Vue.extend({
-    name: 'home',
+    name: 'app-content',
     components: {
-        'home-header': HomeHeader,
+        'app-header': AppHeader,
         helmet: Helmet,
     },
 });

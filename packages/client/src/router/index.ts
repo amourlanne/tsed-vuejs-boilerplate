@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 
 import i18n from '@/packages/vue-i18n';
 
-import Home from '@/views/Home.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
 
 import store from '@/store';
@@ -19,7 +18,7 @@ function hasAuthCookie() {
 const routes = [
     {
         path: '/',
-        component: Home,
+        component: () => import('@/views/app/AppContent.vue'),
         meta: {
             requiresAuth: true,
         },
@@ -27,16 +26,40 @@ const routes = [
             {
                 path: '',
                 name: 'home',
-                component: () => import('@/views/home/Welcome.vue'),
+                component: () => import('@/views/app/Welcome.vue'),
+            },
+            {
+                path: 'users',
+                component: {
+                    render: c => c('router-view'),
+                },
+                children: [
+                    {
+                        path: "",
+                        name: "users",
+                        component: () => import("@/views/app/users/Users.vue"),
+                    },
+                    {
+                        path: ":username",
+                        name: "user",
+                        component: () => import("@/views/app/users/User.vue"),
+                        meta: {
+                            breadcrumb: [
+                                { name: 'users', to: { name: "users" } },
+                                { name: 'user', active: true }
+                            ],
+                        }
+                    },
+                ]
             },
             {
                 path: 'account',
                 name: 'account',
-                component: () => import('@/views/home/account/Account.vue'),
+                component: () => import('@/views/app/account/Account.vue'),
             },
             {
                 path: 'admin',
-                component: () => import('@/views/home/admin/Admin.vue'),
+                component: () => import('@/views/app/admin/Admin.vue'),
                 meta: {
                     rolesAllowed: [RoleEnum.Admin],
                 },
@@ -57,17 +80,17 @@ const routes = [
                             {
                                 path: '',
                                 name: 'admin-users',
-                                component: () => import('@/views/home/admin/users/Users.vue'),
+                                component: () => import('@/views/app/admin/users/Users.vue'),
                             },
                             {
                                 path: 'new',
                                 name: 'admin-users-new',
-                                component: () => import('@/views/home/admin/users/NewUser.vue'),
+                                component: () => import('@/views/app/admin/users/NewUser.vue'),
                             },
                             {
                                 path: ':username/edit',
                                 name: 'admin-users-edit',
-                                component: () => import('@/views/home/admin/users/EditUser.vue'),
+                                component: () => import('@/views/app/admin/users/EditUser.vue'),
                             },
                         ],
                     },

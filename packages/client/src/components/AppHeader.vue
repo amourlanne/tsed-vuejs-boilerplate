@@ -3,6 +3,23 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
+                    <div class="nav-item dropdown">
+                        <a
+                            class="navbar-brand"
+                            href="#"
+                            role="button"
+                            id="dropdownMenuLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            Boilerplate
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <router-link class="dropdown-item" :to="{ name: 'users' }">People and teams</router-link>
+                        </div>
+                    </div>
                     <li class="nav-item">
                         <router-link :to="{ name: 'home' }" class="nav-link">
                             {{ $t('nav.headers.home') }}
@@ -51,7 +68,7 @@ import { mapGetters } from 'vuex';
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue';
 
 export default Vue.extend({
-    name: 'home-header',
+    name: 'app-header',
     components: {
         'locale-switcher': LocaleSwitcher,
     },

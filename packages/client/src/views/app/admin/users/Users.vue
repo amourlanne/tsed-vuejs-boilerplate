@@ -1,15 +1,9 @@
 <template>
     <div class="container-fluid mt-4">
-        <router-link :to="{ name: 'admin-users-new' }" class="btn btn-primary float-right">
+        <router-link :to="{ name: 'admin-users-new' }" class="btn btn-primary float-right mb-3">
             New User
         </router-link>
         <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
             <tbody>
                 <tr v-for="user in users" :key="user.username">
                     <td>
